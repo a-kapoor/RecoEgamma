@@ -471,9 +471,9 @@ int ElectronMVANtuplizer::matchToTruth(reco::GsfElectron const& electron,
   // See if the closest electron is close enough. If not, no match found.
   if( closestElectron == nullptr || dR >= deltaR_ ) return UNMATCHED;
 
-  if( closestElectron->fromHardProcessFinalState() ) return TRUE_PROMPT_ELECTRON;
+  if( closestElectron->isPromptFinalState() ) return TRUE_PROMPT_ELECTRON;
 
-  if( closestElectron->isDirectHardProcessTauDecayProductFinalState() ) return TRUE_ELECTRON_FROM_TAU;
+  if( closestElectron->isDirectPromptTauDecayProductFinalState() ) return TRUE_ELECTRON_FROM_TAU;
 
   //if( closestElectron->isDirectHadronDecayProduct()) return TRUE_ELECTRON_FROMHADRONDECAY;
   
@@ -495,7 +495,7 @@ int ElectronMVANtuplizer::matchToHadron(reco::GsfElectron const& electron,
   for(auto const& particle : genParticles) {
       //std::cout<<"particle.pdgId : "<<particle.pdgId()<<std::endl;
     // Drop everything that is not electron or not status 1
-    if( std::abs(particle.pdgId()) != 11 || particle.status() != 1 )
+      if( std::abs(particle.pdgId()) != 11 || particle.status() != 1 )
       continue;
     //
     double dRtmp = ROOT::Math::VectorUtil::DeltaR( electron.p4(), particle.p4() );
@@ -507,9 +507,9 @@ int ElectronMVANtuplizer::matchToHadron(reco::GsfElectron const& electron,
   // See if the closest electron is close enough. If not, no match found.
   if( closestElectron == nullptr || dR >= deltaR_ ) return H_UNMATCHED;
 
-  if( closestElectron->fromHardProcessFinalState() ) return H_TRUE_PROMPT_ELECTRON;
+  if( closestElectron->isPromptFinalState() ) return H_TRUE_PROMPT_ELECTRON;
 
-  if( closestElectron->isDirectHardProcessTauDecayProductFinalState() ) return H_TRUE_ELECTRON_FROM_TAU;
+  if( closestElectron->isDirectPromptTauDecayProductFinalState() ) return H_TRUE_ELECTRON_FROM_TAU;
 
   if( closestElectron->statusFlags().isDirectHadronDecayProduct()) return H_TRUE_ELECTRON_FROMHADRONDECAY;
   
@@ -529,32 +529,32 @@ int ElectronMVANtuplizer::matchToPion(reco::GsfElectron const& electron,
   reco::GenParticle const* closestPion = nullptr;
   for(auto const& particle : genParticles) {
     // Drop everything that is not pion or not status 1
-      if( std::abs(particle.pdgId()) != 211)	 
+      if( std::abs(particle.pdgId()) != 211 || particle.status() != 1)	 
 	continue;
     double dRtmp = ROOT::Math::VectorUtil::DeltaR( electron.p4(), particle.p4() );
     if( dRtmp < dR ){
       dR = dRtmp;
       closestPion = &particle;
-      if(dR<0.1){
-	  std::cout<<"Found PionMatch"<<std::endl;      
-	  std::cout<<"closestPion->pdgId : "<<closestPion->pdgId()<<std::endl;
-	  std::cout<<"closestPion->pt : "<<closestPion->pt()<<std::endl;
-	  std::cout<<"electron pt : "<<electron.pt()<<std::endl;
-	  std::cout<<"closestPion dR : "<<dR<<std::endl;}
+      // if(dR<0.1){
+    // 	  std::cout<<"Found PionMatch"<<std::endl;      
+    // 	  std::cout<<"closestPion->pdgId : "<<closestPion->pdgId()<<std::endl;
+    // 	  std::cout<<"closestPion->pt : "<<closestPion->pt()<<std::endl;
+    // 	  std::cout<<"electron pt : "<<electron.pt()<<std::endl;
+    // 	  std::cout<<"closestPion dR : "<<dR<<std::endl;}
     }
   }
   // See if the closest electron is close enough. If not, no match found.
   if( closestPion == nullptr ) return P_UNMATCHED;
   if( dR >= deltaR_ ) return P_FAR;
 
-  if( closestPion->fromHardProcessFinalState() ) return P_TRUE_PROMPT_ELECTRON;
+  if( closestPion->isPromptFinalState() ) return P_TRUE_PROMPT_ELECTRON;
 
-  if( closestPion->isDirectHardProcessTauDecayProductFinalState() ) return P_TRUE_ELECTRON_FROM_TAU;
+  if( closestPion->isDirectPromptTauDecayProductFinalState() ) return P_TRUE_ELECTRON_FROM_TAU;
 
   if( closestPion->statusFlags().isDirectHadronDecayProduct()) return P_TRUE_ELECTRON_FROMHADRONDECAY;
   // What remains is true non-prompt electrons
   return P_TRUE_NON_PROMPT_ELECTRON;
-}
+  }
 
 
 
@@ -570,27 +570,27 @@ int ElectronMVANtuplizer::matchToNeuPion(reco::GsfElectron const& electron,
     reco::GenParticle const* closestPion = nullptr;
     for(auto const& particle : genParticles) {
 	// Drop everything that is not pion or not status 1
-	if(std::abs(particle.pdgId()) != 111) 
+	if(std::abs(particle.pdgId()) != 111 || particle.status() != 1) 
 	    continue;
 	double dRtmp = ROOT::Math::VectorUtil::DeltaR( electron.p4(), particle.p4() );
 	if( dRtmp < dR ){
 	    dR = dRtmp;
 	    closestPion = &particle;
-	    if(dR<0.1){
-		std::cout<<"Found PionMatch"<<std::endl;      
-		std::cout<<"closestPion->pdgId : "<<closestPion->pdgId()<<std::endl;
-		std::cout<<"closestPion->pt : "<<closestPion->pt()<<std::endl;
-		std::cout<<"electron pt : "<<electron.pt()<<std::endl;
-		std::cout<<"closestPion dR : "<<dR<<std::endl;}
+	//     if(dR<0.1){
+	// 	std::cout<<"Found PionMatch"<<std::endl;      
+	// 	std::cout<<"closestPion->pdgId : "<<closestPion->pdgId()<<std::endl;
+	// 	std::cout<<"closestPion->pt : "<<closestPion->pt()<<std::endl;
+	// 	std::cout<<"electron pt : "<<electron.pt()<<std::endl;
+	// 	std::cout<<"closestPion dR : "<<dR<<std::endl;}
 	}
     }
     // See if the closest electron is close enough. If not, no match found.
     if( closestPion == nullptr ) return NP_UNMATCHED;
     if( dR >= deltaR_ ) return NP_FAR;
 
-    if( closestPion->fromHardProcessFinalState() ) return NP_TRUE_PROMPT_ELECTRON;
+    if( closestPion->isPromptFinalState() ) return NP_TRUE_PROMPT_ELECTRON;
 
-    if( closestPion->isDirectHardProcessTauDecayProductFinalState() ) return NP_TRUE_ELECTRON_FROM_TAU;
+    if( closestPion->isDirectPromptTauDecayProductFinalState() ) return NP_TRUE_ELECTRON_FROM_TAU;
 
     if( closestPion->statusFlags().isDirectHadronDecayProduct()) return NP_TRUE_ELECTRON_FROMHADRONDECAY;
     // What remains is true non-prompt electrons
@@ -616,7 +616,7 @@ int ElectronMVANtuplizer::matchToPhoton(reco::GsfElectron const& electron,
 	  for(auto const& particle2 : genParticles) {
 	      if(ROOT::Math::VectorUtil::DeltaR( particle.p4(), particle2.p4())>0.4 &&  particle2.status()==23){
 		  if((std::abs(particle2.pdgId())<=6 && std::abs(particle2.pdgId())>=1) || std::abs(particle2.pdgId())==21){
-		      std::cout<<"closestPhoton dR : "<<dRtmp<<std::endl;
+		      //std::cout<<"closestPhoton dR : "<<dRtmp<<std::endl;
 		      return 1;}}
 	  }
       }
