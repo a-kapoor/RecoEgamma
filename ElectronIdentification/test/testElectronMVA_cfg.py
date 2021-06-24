@@ -9,7 +9,8 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 
 #process.GlobalTag = GlobalTag(process.GlobalTag, '110X_mcRun3_2021_realistic_v6', '')#'106X_mcRun3_2023_realistic_v3', '')
-process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2023_realistic_v3', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2021_realistic_v3', '')
+process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v15','')
 
 # File with the ID variables to include in the Ntuplizer
 mvaVariablesFile = "RecoEgamma/ElectronIdentification/data/ElectronIDVariables.txt"
@@ -127,30 +128,7 @@ process.ntuplizer = cms.EDAnalyzer('ElectronMVANtuplizer',
                                    ###gen tau jet collection
                                    genTauJetCollection = cms.InputTag("tauGenJets")
                                )
-"""
-The energy matrix is for ecal driven electrons the n x n of raw
-rec-hit energies around the seed crystal.
 
-The size of the energy matrix is controlled with the parameter
-"energyMatrixSize", which controlls the extension of crystals in each
-direction away from the seed, in other words n = 2 * energyMatrixSize + 1.
-
-The energy matrix gets saved as a vector but you can easily unroll it
-to a two dimensional numpy array later, for example like that:
-
->>> import uproot
->>> import numpy as np
->>> import matplotlib.pyplot as plt
-
->>> tree = uproot.open("electron_ntuple.root")["ntuplizer/tree"]
->>> n = 5
-
->>> for a in tree.array("ele_energyMatrix"):
->>>     a = a.reshape((n,n))
->>>     plt.imshow(np.log10(a))
->>>     plt.colorbar()
->>>     plt.show()
-"""
 ###Tau gen jet producer
 process.load("PhysicsTools.JetMCAlgos.TauGenJets_cfi")
 
@@ -159,13 +137,3 @@ process.tauGenJets.GenParticles = cms.InputTag("prunedGenParticles")
 process.TFileService = cms.Service("TFileService", fileName = cms.string(outputFile))
 
 process.p = cms.Path(process.tauGenJets * process.egmGsfElectronIDSequence * process.ntuplizer)
-
-
-####Used to check the output collection name
-#process.out = cms.OutputModule("PoolOutputModule",
-#                               fileName = cms.untracked.string('myOutputFile.root'),
-#                               SelectEvents = cms.untracked.PSet(
-#                                   SelectEvents = cms.vstring("p")
-#                            )
-#                           )
-#process.e = cms.EndPath(process.out)                                                                        
