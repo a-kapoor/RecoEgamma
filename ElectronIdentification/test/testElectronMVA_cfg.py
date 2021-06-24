@@ -17,75 +17,10 @@ mvaVariablesFile = "RecoEgamma/ElectronIdentification/data/ElectronIDVariables.t
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(400000) )
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt_170to250_bcToE_TuneCP5_13TeV_pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v1/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="QCDPt170to250bcToETuneCP513TeVpythia8_RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2_NewCode2021.root"
-
-# os.system("dasgoclient --query=\"file dataset=/TauGun_Pt-15to500_14TeV-pythia8/Run3Summer19MiniAOD-2021Scenario_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="TauGun_Pt-15to500_14TeV_Run3Summer19MiniAOD-2021Scenario_106X_mcRun3_2021_NewCode2021.root"
-
-
-# os.system("dasgoclient --query=\"file dataset=/DoublePion_E-50/Run3Summer19MiniAOD-2023ScenarioRECO_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files5.txt")
-# outputFile="DoublePion_E-50-Run3Summer19MiniAOD-2023ScenarioRECO_106X_mcRun3_2023_versionFS.root"
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-30toInf_DoubleEMEnriched_MGG-40to80_TuneCP5_13TeV_Pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM instance=prod/global\" >files5.txt")
-# outputFile="QCDPt30toInfDoubleEMEnrichedMGG-40to80TuneCP513TeVPythia8RunIIAutumn18MiniAOD102X_upgrade2018_realistic_v15-v2_versionFS.root"
-
-#/QCD_Pt-30toInf_DoubleEMEnriched_MGG-40to80_TuneCP5_13TeV_Pythia8/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM
-
-# os.system("dasgoclient --query=\"file dataset=/GJet_Pt-20to40_DoubleEMEnriched_MGG-80toInf_TuneCP5_14TeV_Pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v1/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="GJetPt20to40DoubleEMEnrichedMGG-80toInfTuneCP5_14TeV_Pythia8_Run3Summer19MiniAOD-2023Scenario106X_mcRun3_2023_realisticv3_newCode2021.root"
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ1.txt")
-# outputFile="QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ1.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-170to300_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-170to300_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ2.txt")
-# outputFile="QCD_Pt-170to300_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ2.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-300toInf_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-300toInf_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ3.txt")
-# outputFile="QCD_Pt-300toInf_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ3.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-30to50_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-30to50_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ4.txt")
-# outputFile="QCD_Pt-30to50_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ4.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ5.txt")
-# outputFile="QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ5.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-80to120_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global site=$(dasgoclient --query='site dataset=/QCD_Pt-80to120_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM' | grep T2 | head -1)\" >filesQ6.txt")
-# outputFile="QCD_Pt-80to120_EMEnriched_TuneCP5_14TeV_pythia8_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('filesQ6.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/GJet_Pt-40toInf_DoubleEMEnriched_MGG-80toInf_TuneCP5_14TeV_Pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files2.txt")
-# outputFile="GJet_Pt-40toInf_DoubleEMEnriched_MGG-80toInf_TuneCP5_14TeV_Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_newCode2021.root"
-# lines = [line.rstrip('\n') for line in open('files2.txt')]
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt_15to7000_TuneCP5_Flat_14TeV_pythia8/Run3Summer19MiniAOD-106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="QCD_Pt_15to7000_TuneCP5_Flat_14TeV_pythia8-Run3Summer19MiniAOD-106X_mcRun3_2023_versionFS_newCode2021.root"
-
-
-# os.system("dasgoclient --query=\"file dataset=/Pionplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="Pionplusandminus_E10-100-gun-Run3Summer19MiniAOD-2021ScenarioForMUO_PionMatched.root"
-
-# os.system("dasgoclient --query=\"file dataset= /QCD_Pt-15to7000_TuneCH2_Flat_13TeV_herwig7/RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="QCD_Pt-15to7000_TuneCH2_Flat_13TeV_herwig7_RunIIAutumn18MiniAOD-102X_upgrade2018_realistic_v15-v2_NewCode2021.root"
-
-
-# os.system("dasgoclient --query=\"file dataset=/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="QCD_Pt-120to170_EMEnriched_TuneCP514TeVpythia8Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2_NewCode2021.root"
-
-# os.system("dasgoclient --query=\"file dataset=/DYJets_incl_MLL-50_TuneCP5_14TeV-madgraphMLM-pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v1/MINIAODSIM instance=prod/global\" >files.txt")
-# outputFile="DYJets_incl_MLL-50_TuneCP5_14TeV-madgraphMLM-pythia8-Run3Summer19MiniAOD-2023Scenario_NewCode2021+2021.root"
-# lines = [line.rstrip('\n') for line in open('files.txt')]
-
-#print(lines)
 
 process.source = cms.Source("PoolSource",
-                            fileNames = cms.untracked.vstring("file:ten_tau_reco_1000evt_miniAOD.root"))
-#                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/270000/2A5317F8-5DC6-1E45-B946-A17A198B0B32.root"))
+#                            fileNames = cms.untracked.vstring("file:ten_tau_reco_1000evt_miniAOD.root"))
+                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/270000/2A5317F8-5DC6-1E45-B946-A17A198B0B32.root"))
 
 outputFile="output.root"
 
