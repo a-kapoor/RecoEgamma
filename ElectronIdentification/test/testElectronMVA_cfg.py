@@ -8,8 +8,8 @@ process.load("Configuration.StandardSequences.GeometryDB_cff")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 
-#process.GlobalTag = GlobalTag(process.GlobalTag, '110X_mcRun3_2021_realistic_v6', '')#'106X_mcRun3_2023_realistic_v3', '')
-#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2021_realistic_v3', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2021_realistic_v3', '')#'106X_mcRun3_2023_realistic_v3', '')
+#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2023_realistic_v3', '')
 process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v15','')
 
 # File with the ID variables to include in the Ntuplizer

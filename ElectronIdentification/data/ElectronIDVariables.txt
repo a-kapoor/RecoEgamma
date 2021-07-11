@@ -67,3 +67,5 @@ ele_convDcot                       convDcot                                     
 ele_dr03TkSumPt                    dr03TkSumPt                                                None None
 ele_dr03EcalRecHitSumEt            dr03EcalRecHitSumEt                                        None None
 ele_dr03HcalTowerSumEt             dr03HcalTowerSumEt                                         None None
+ele_ecalPFClusterIso               ecalPFClusterIso                                           None None
+ele_hcalPFClusterIso               hcalPFClusterIso                                           None None
