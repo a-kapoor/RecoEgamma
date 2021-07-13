@@ -2,8 +2,8 @@ from CRABClient.UserUtilities import config #getUsernameFromSiteDB
 import sys
 config = config()
 
-submitVersion = "ntuple_PFID_July"
-mainOutputDir = '/store/group/phys_egamma/akapoor/ntuple_ForPFID_July/%s' % submitVersion
+submitVersion = "ntuple_PFID_July_correct"
+mainOutputDir = '/store/group/phys_egamma/akapoor/ntuple_ForPFID_July_Correct/%s' % submitVersion
 
 # config.General.transferLogs = False
 
@@ -11,7 +11,7 @@ config.General.transferOutputs = True
 config.JobType.pluginName  = 'Analysis'
 
 # Name of the CMSSW configuration file
-config.JobType.psetName  = '/afs/cern.ch/user/a/akapoor/workspace/2020/EGamma_ggAnalysis_Ntuplizer/CMSSW_10_6_3/src/RecoEgamma/ElectronIdentification/test/testElectronMVA_cfg.py'
+config.JobType.psetName  = '/afs/cern.ch/user/a/akapoor/workspace/2020/EGamma_ggAnalysis_Ntuplizer/new/CMSSW_10_6_3/src/RecoEgamma/ElectronIdentification/test/testElectronMVA_cfg.py'
 config.JobType.allowUndistributedCMSSW = True
 config.Data.allowNonValidInputDataset = True
 
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
 
     # config.Data.inputDataset = '/QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8/Run3Summer19MiniAOD-2023Scenario_106X_mcRun3_2023_realistic_v3-v2/MINIAODSIM'
-    # config.General.requestName = 'QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8_July2021newflaaddedclusterisog'
+    # config.General.requestName = 'QCD_Pt-50to80_EMEnriched_TuneCP5_14TeV_pythia8_July2021newflaaddedclusterisog_ondisk'
     # submit(config)
 
 
@@ -156,50 +156,50 @@ if __name__ == '__main__':
 
 # #333333333333333333333333333333333333333
 
-#     config.Data.inputDataset = '/Eleplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Eleplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Eleplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Eleplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Eleplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
-#     config.General.requestName = 'Eleplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Eleplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
+    # config.General.requestName = 'Eleplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Eleplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Eleplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Eleplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Eleplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
 
-#     config.Data.inputDataset = '/Muplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Muplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Muplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Muplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Muplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
-#     config.General.requestName = 'Muplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Muplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
+    # config.General.requestName = 'Muplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Muplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Muplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Muplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Muplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
     
-#     config.Data.inputDataset = '/Pionplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Pionplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Pionplusandminus_E1-10-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Pionplusandminus_E1-10-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Pionplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
-#     config.General.requestName = 'Pionplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Pionplusandminus_E10-100-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v2/MINIAODSIM'
+    # config.General.requestName = 'Pionplusandminus_E10-100-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
-#     config.Data.inputDataset = '/Pionplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
-#     config.General.requestName = 'Pionplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
-#     submit(config)
+    # config.Data.inputDataset = '/Pionplusandminus_E100-7000-gun/Run3Summer19MiniAOD-2021ScenarioForMUO_106X_mcRun3_2021_realistic_v3-v1/MINIAODSIM'
+    # config.General.requestName = 'Pionplusandminus_E100-700-gun-2021ScenarioForMUO_July2021newflaaddedclusterisog'
+    # submit(config)
 
 
 
