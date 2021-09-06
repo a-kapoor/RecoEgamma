@@ -34,6 +34,8 @@
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h"
+#include "PhysicsTools/TensorFlow/interface/TensorFlow.h"
+#include "FWCore/Framework/interface/one/EDAnalyzer.h"
 
 #include <TTree.h>
 #include <TFile.h>
@@ -62,6 +64,10 @@ class ElectronMVANtuplizer : public edm::one::EDAnalyzer<edm::one::SharedResourc
 
       int matchToTruth(reco::GsfElectron const& electron,
 		     edm::View<reco::GenParticle> const& genParticles) const;
+
+    
+      float MultiClass(reco::GsfElectron const& electron);
+
     
       int matchToPion(reco::GsfElectron const& electron,
 		     edm::View<reco::GenParticle> const& genParticles) const;
@@ -96,6 +102,7 @@ class ElectronMVANtuplizer : public edm::one::EDAnalyzer<edm::one::SharedResourc
       // electron variables
       float eleQ_;
       int ele3Q_;
+      float mclassEle_;
       int matchedToGenEle_;
       int matchedToGenPion_;
       int matchedToGenPhoton_;
@@ -284,6 +291,7 @@ ElectronMVANtuplizer::ElectronMVANtuplizer(const edm::ParameterSet& iConfig)
    if (doEnergyMatrix_) tree_->Branch("energyMatrix",&energyMatrix_);
 
    if (isMC_) tree_->Branch("matchedToGenEle",   &matchedToGenEle_);
+   if (isMC_) tree_->Branch("mclassEle", &mclassEle_);
    if (isMC_) tree_->Branch("matchedToGenPion",   &matchedToGenPion_);
    if (isMC_) tree_->Branch("matchedToGenPhoton",   &matchedToGenPhoton_);
    if (isMC_) tree_->Branch("matchedToGenNeuPion",   &matchedToGenNeuPion_);
@@ -414,6 +422,7 @@ ElectronMVANtuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& i
 
         if (isMC_) {
 	    //std::cout<<"particle.pdgId : "<<std::endl;
+            mclassEle_ = MultiClass( *ele);
             matchedToGenEle_ = matchToTruth( *ele, *genParticles);
             matchedToGenPion_ = matchToPion( *ele, *genParticles);
 	    matchedToGenPhoton_ = matchToPhoton( *ele, *genParticles);
@@ -444,6 +453,46 @@ ElectronMVANtuplizer::analyze(const edm::Event& iEvent, const edm::EventSetup& i
         tree_->Fill();
     }
 
+}
+
+
+float ElectronMVANtuplizer::MultiClass(reco::GsfElectron const& electron)
+{
+    std::cout<<"Line1\n";
+    tensorflow::setLogging("2");
+    std::cout<<"Line2\n";
+    // load the graph definition
+    tensorflow::GraphDef* graphDef = tensorflow::loadGraphDef("/afs/cern.ch/user/a/akapoor/workspace/2020/EGamma_ggAnalysis_Ntuplizer/new/CMSSW_10_6_3/src/RecoEgamma/ElectronIdentification/data/DNN_rechitandclusteriso_2drwt_withpteta_modelDNN.pb");
+    // create a session
+    std::cout<<"Line3\n";
+    tensorflow::Session* session = tensorflow::createSession(graphDef);
+    std::cout<<"Line4\n";
+    tensorflow::Tensor input(tensorflow::DT_FLOAT, { 1, 24 });
+    std::cout<<"Line5\n";
+    for (size_t i = 0; i < 24; i++) {
+	input.matrix<float>()(0, i) = float(i);
+    }
+    std::cout<<"Line6\n";
+    std::vector<tensorflow::Tensor> outputs;
+    //x1 = tf.placeholder(tf.float32, shape=(None, None, None, None))
+    //outputs[0].matrix<float>()(0, 0)=float(0);
+    //outputs[0].matrix<float>()(0, 1)=float(1);
+    //outputs[0].matrix<float>()(0, 2)=float(2);
+    //outputs[0].matrix<float>()(0, 3)=float(3);
+    //outputs[0].matrix<float>()(0, 4)=float(4);
+    std::cout<<"Line7\n";
+    tensorflow::run(session, { { "input", input } }, { "output" }, &outputs);
+    std::cout<<"Line8\n";
+    // process the output tensor
+    // (example: print the 5th value of the 0th (the only) example)
+    std::cout << outputs[0].matrix<float>()(0, 4) << std::endl;
+    // -> float
+    std::cout<<"Line9\n";
+    tensorflow::closeSession(session);
+    delete graphDef;
+    std::cout<<"Line10\n";
+    return outputs[0].matrix<float>()(0, 4);
+    std::cout<<"Line11\n";
 }
 
 int ElectronMVANtuplizer::matchToTruth(reco::GsfElectron const& electron,

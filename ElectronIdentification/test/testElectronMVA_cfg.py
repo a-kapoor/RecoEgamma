@@ -16,12 +16,13 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v15
 mvaVariablesFile = "RecoEgamma/ElectronIdentification/data/ElectronIDVariables.txt"
 
 #process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(400000) )
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
 
 process.source = cms.Source("PoolSource",
 #                            fileNames = cms.untracked.vstring("file:ten_tau_reco_1000evt_miniAOD.root"))
-                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/270000/2A5317F8-5DC6-1E45-B946-A17A198B0B32.root"))
+#                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/270000/2A5317F8-5DC6-1E45-B946-A17A198B0B32.root"))
+                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/ZprimeToTT_M3000_W30_TuneCP5_14TeV-madgraphMLM-pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/130000/00993722-9523-7A41-8525-1B4380C82B21.root"))
 
 outputFile="output.root"
 
