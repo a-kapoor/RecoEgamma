@@ -1,30 +1,28 @@
 import FWCore.ParameterSet.Config as cms
 from PhysicsTools.SelectorUtils.tools.vid_id_tools import *
 from Configuration.AlCa.GlobalTag import GlobalTag
-import os
+
 process = cms.Process("ElectronMVANtuplizer")
 
 process.load("Configuration.StandardSequences.GeometryDB_cff")
 process.load("FWCore.MessageService.MessageLogger_cfi")
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
 
-#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2021_realistic_v3', '')#'106X_mcRun3_2023_realistic_v3', '')
-#process.GlobalTag = GlobalTag(process.GlobalTag, '106X_mcRun3_2023_realistic_v3', '')
-process.GlobalTag = GlobalTag(process.GlobalTag, '102X_upgrade2018_realistic_v15','')
+process.GlobalTag = GlobalTag(process.GlobalTag, '120X_mcRun3_2021_realistic_v5', '')
 
 # File with the ID variables to include in the Ntuplizer
 mvaVariablesFile = "RecoEgamma/ElectronIdentification/data/ElectronIDVariables.txt"
 
-#process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(400000) )
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
+outputFile = "electron_ntuple.root"
 
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.source = cms.Source("PoolSource",
-#                            fileNames = cms.untracked.vstring("file:ten_tau_reco_1000evt_miniAOD.root"))
-#                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/QCD_Pt-120to170_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/270000/2A5317F8-5DC6-1E45-B946-A17A198B0B32.root"))
-                            fileNames = cms.untracked.vstring("/store/mc/Run3Summer19MiniAOD/ZprimeToTT_M3000_W30_TuneCP5_14TeV-madgraphMLM-pythia8/MINIAODSIM/2023Scenario_106X_mcRun3_2023_realistic_v3-v2/130000/00993722-9523-7A41-8525-1B4380C82B21.root"))
-
-outputFile="output.root"
+    fileNames = cms.untracked.vstring(
+        '/store/mc/Run3Summer21MiniAOD/QCD_Pt-80to120_EMEnriched_TuneCP5_14TeV_pythia8/MINIAODSIM/FlatPU0to70_120X_mcRun3_2021_realistic_v5-v1/250000/022033d5-7938-4d00-90f4-d74821b8314a.root'
+#         '/store/mc/RunIIFall17MiniAOD/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/MINIAODSIM/RECOSIMstep_94X_mc2017_realistic_v10-v1/00000/0293A280-B5F3-E711-8303-3417EBE33927.root'
+    )
+)
 
 useAOD = False
 
@@ -35,6 +33,7 @@ if useAOD == True :
     dataFormat = DataFormat.AOD
 else :
     dataFormat = DataFormat.MiniAOD
+    input_tags = dict()
 
 switchOnVIDElectronIdProducer(process, dataFormat)
 
@@ -121,18 +120,17 @@ process.ntuplizer = cms.EDAnalyzer('ElectronMVANtuplizer',
                                            "EleMVACats",
                                            ),
         #
-                                   variableDefinition   = cms.string(mvaVariablesFile),
-                                   ptThreshold = cms.double(5.0),
-                                   #
-                                   doEnergyMatrix = cms.bool(False), # disabled by default due to large size
-                                   energyMatrixSize = cms.int32(2), # corresponding to 5x5
-                                   ###gen tau jet collection
-                                   genTauJetCollection = cms.InputTag("tauGenJets")
-                               )
+        variableDefinition   = cms.string(mvaVariablesFile),
+        ptThreshold = cms.double(5.0),
+        #
+        doEnergyMatrix = cms.bool(False), # disabled by default due to large size
+        energyMatrixSize = cms.int32(2), # corresponding to 5x5
+        #
+        genTauJetCollection = cms.InputTag("tauGenJets")
+        #**input_tags
+        )
 
-###Tau gen jet producer
 process.load("PhysicsTools.JetMCAlgos.TauGenJets_cfi")
-
 process.tauGenJets.GenParticles = cms.InputTag("prunedGenParticles")
 
 process.TFileService = cms.Service("TFileService", fileName = cms.string(outputFile))
